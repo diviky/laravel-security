@@ -13,7 +13,7 @@ class ClearCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'security::auth:history-clear';
+    protected $signature = 'security:auth:history-clear';
 
     /**
      * The console command description.

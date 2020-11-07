@@ -14,6 +14,7 @@
                     <th>ip</th>
                     <th>user agent</th>
                     <th>last activity</th>
+                    <th>active</th>
                     <th>Logout</th>
                 </tr>
             </thead>
@@ -21,8 +22,9 @@
                 @endview @foreach($rows as $row)
                 <tr>
                     <td>{{ $row->ip_address }}</td>
-                    <td>{{ str_limit($row->user_agent, 100) }}</td>
+                    <td>{{ Illuminate\Support\Str::limit($row->user_agent, 100) }}</td>
                     <td>{{ datetime($row->last_activity) }}</td>
+                    <td>{{ $row->active }}</td>
                     <td>
                         @if(!$row->active)
                         <a data-delete href="{{ url('security/sessions/delete/'.$row->id) }}" title="Logout from this session"

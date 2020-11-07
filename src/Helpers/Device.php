@@ -22,7 +22,7 @@ class Device
 
         $return = [];
         if ($bot && $dd->isBot()) {
-            $return['bot'] = $d->getBot();
+            $return['bot'] = $dd->getBot();
 
             return $return;
         }

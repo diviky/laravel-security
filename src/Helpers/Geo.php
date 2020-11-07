@@ -7,7 +7,7 @@ use Geocoder\Provider\GeoIP2\GeoIP2;
 use Geocoder\Provider\GeoIP2\GeoIP2Adapter;
 use Geocoder\ProviderAggregator;
 use GeoIp2\Database\Reader;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Adapter\Guzzle7\Client as GuzzleAdapter;
 
 /**
  * @author sankar <sankar.suda@gmail.com>

@@ -20,4 +20,9 @@ class Session extends Model
      * @var string
      */
     protected $table = 'sessions';
+
+    public function user()
+    {
+        return $this->belongsTo(config('auth.providers.users.model'));
+    }
 }

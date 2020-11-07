@@ -2,12 +2,12 @@
 
 namespace Diviky\Security\Listeners;
 
+use Diviky\Security\Concerns\Device;
+use Diviky\Security\Models\LoginHistory;
+use Diviky\Security\Notifications\NewDevice;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Diviky\Security\Models\LoginHistory;
-use Diviky\Security\Notifications\NewDevice;
-use Diviky\Security\Concerns\Device;
 
 class LogSuccessfulLogin
 {
@@ -22,8 +22,6 @@ class LogSuccessfulLogin
 
     /**
      * Create the event listener.
-     *
-     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -32,8 +30,6 @@ class LogSuccessfulLogin
 
     /**
      * Handle the event.
-     *
-     * @param Login $event
      */
     public function handle(Login $event)
     {
@@ -50,14 +46,14 @@ class LogSuccessfulLogin
             'id'         => Str::uuid(),
             'user_id'    => $user->id,
             'ip'         => $ip,
-            'ips'        => implode(',', $this->request->getClientIps()),
+            'ips'        => \implode(',', $this->request->getClientIps()),
             'host'       => $this->request->getHost(),
             'user_agent' => $user_agent,
             'created_at' => carbon(),
             'status'     => 1,
         ];
 
-        $values = array_merge($values, $this->getDeviceDetails($ip, $user_agent));
+        $values = \array_merge($values, $this->getDeviceDetails($ip, $user_agent));
 
         $history = LoginHistory::create($values);
 

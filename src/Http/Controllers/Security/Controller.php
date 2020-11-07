@@ -105,7 +105,7 @@ class Controller extends BaseController
             ];
 
             (new Mailable())
-                ->subject('Two Factor Authentication enabled')
+                ->subject(__('Two Factor Authentication enabled'))
                 ->with($tags)
                 ->prefix('security::emails.')
                 ->markdown('security.twofa_enabled')
@@ -167,6 +167,7 @@ class Controller extends BaseController
         $date = carbon();
         $date->subMinutes(config('session.lifetime'));
         $timestamp = $date->getTimestamp();
+        $data      = $this->all();
 
         $rows = Session::filter($data)
             ->where('user_id', user()->id)

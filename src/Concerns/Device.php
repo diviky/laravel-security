@@ -3,7 +3,7 @@
 namespace Diviky\Security\Concerns;
 
 use Diviky\Security\Helpers\Device as BaseDevice;
-use Diviky\Security\Helpers\Geo;
+use Diviky\Security\Helpers\GeoCode;
 
 trait Device
 {
@@ -12,7 +12,7 @@ trait Device
         $device  = new BaseDevice();
         $details = (array) $device->detect($userAgent, true);
 
-        $geoHelper = new Geo();
+        $geoHelper = new GeoCode();
         $geo       = (array) $geoHelper->geocode($ip);
 
         return [
