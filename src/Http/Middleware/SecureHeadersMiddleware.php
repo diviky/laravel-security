@@ -12,9 +12,6 @@ class SecureHeadersMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure  $next
-     *
      * @return Response
      */
     public function handle(Request $request, Closure $next)
@@ -23,7 +20,7 @@ class SecureHeadersMiddleware
 
         $config = config('security-headers', []);
 
-        if (!$config['enabled']) {
+        if (!isset($config['enabled']) || true !== $config['enabled']) {
             return $response;
         }
 

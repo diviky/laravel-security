@@ -73,9 +73,7 @@ class Device
 
         $browserFamily            = Browser::getBrowserFamily($client['short_name']);
         $return['browser_family'] = (false !== $browserFamily) ? $browserFamily : 'Unknown';
-
-        $touch           = $dd->isTouchEnabled();
-        $return['touch'] = $touch[0];
+        $return['touch'] = $dd->isTouchEnabled();
 
         unset($os, $client, $osFamily, $browserFamily, $touch);
 
