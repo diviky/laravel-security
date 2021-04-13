@@ -23,8 +23,8 @@ class Controller extends BaseController
 
     public function twofa($user_id = null): array
     {
-        $g2fa = app('pragmarx.google2fa');
-        $user = $user_id ?: user('id');
+        $g2fa    = app('pragmarx.google2fa');
+        $user_id = $user_id ?: user('id');
 
         $user = User::find($user_id);
 
