@@ -1,0 +1,16 @@
+parameters:
+    level: max
+    paths:
+        - src
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Method Illuminate\\Contracts\\Foundation\\Application::basePath\(\) invoked with 1 parameter, 0 required.#'
+        - '#Call to an undefined method Mockery\\ExpectationInterface#'
+        - '#Mockery\\MockInterface#'
+        - '#Parameter \#4 \$phpDocParameterTypes of method PHPStan\\Reflection\\Php\\PhpMethodReflectionFactory::create#'
+        - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$db#'
+        - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$request#'
+        - '#Call to an undefined static method#'
+        - '#Class App\\Http\\Controllers\\Controller not found#'
+        
