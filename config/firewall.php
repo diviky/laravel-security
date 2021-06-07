@@ -1,11 +1,9 @@
 <?php
 
-return [
+declare(strict_types=1);
 
-    /*
-     * Enable / disable firewall
-     *
-     */
+return [
+    // Enable / disable firewall
 
     'enabled'                     => env('FIREWALL_ENABLED', false),
 
@@ -26,10 +24,7 @@ return [
     'blacklist'                   => [],
     'whitelist'                   => [],
 
-    /*
-     * Response action for blocked responses
-     *
-     */
+    // Response action for blocked responses
 
     'responses'                   => [
         'blacklist' => [
@@ -78,10 +73,7 @@ return [
 
     'ip_list_cache_expire_time'   => 60, // minutes - disabled by default
 
-    /*
-     * Send suspicious events to log?
-     *
-     */
+    // Send suspicious events to log?
 
     'enable_log'                  => true,
 
@@ -112,9 +104,7 @@ return [
 
     'enable_country_search'       => true,
 
-    /*
-     * Should Firewall use the database?
-     */
+    // Should Firewall use the database?
 
     'use_database'                => true,
 
@@ -149,9 +139,7 @@ return [
 
     'geoip_database_path'         => storage_path('geoip'),
 
-    /*
-     * Block suspicious attacks
-     */
+    // Block suspicious attacks
 
     'attack_blocker'              => [
         'enabled'           => [
@@ -162,7 +150,6 @@ return [
         'cache_key_prefix'  => 'firewall-attack-blocker',
 
         'allowed_frequency' => [
-
             'ip'      => [
                 'requests' => 50,
                 'seconds'  => 1 * 60, // 1 minute
@@ -172,7 +159,6 @@ return [
                 'requests' => 3000,
                 'seconds'  => 2 * 60, // 2 minutes
             ],
-
         ],
 
         'action'            => [
@@ -185,7 +171,6 @@ return [
                 'blacklist_unknown'     => false,
                 'blacklist_whitelisted' => false,
             ],
-
         ],
 
         'response'          => [
@@ -195,7 +180,6 @@ return [
             'redirect_to' => null,
             'abort'       => false, // return abort() instead of Response::make() - disabled by default
         ],
-
     ],
 
     'notifications'               => [

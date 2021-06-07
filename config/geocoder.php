@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Geocoder\Provider\Chain\Chain;
 use Geocoder\Provider\GeoIP2\GeoIP2;
 use GeoIp2\Database\Reader;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security;
 
 use Diviky\Bright\Support\ServiceProvider;
@@ -23,7 +25,7 @@ class SecurityServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         $this->registerEvents();
 
@@ -39,14 +41,14 @@ class SecurityServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom($this->path() . '/config/security.php', 'security');
         $this->vendorConfig();
         $this->registerMiddlewares();
     }
 
-    protected function vendorConfig()
+    protected function vendorConfig(): void
     {
         $this->mergeConfigFrom($this->path() . '/config/google2fa.php', 'google2fa');
         $this->mergeConfigFrom($this->path() . '/config/firewall.php', 'firewall', true);
@@ -59,7 +61,7 @@ class SecurityServiceProvider extends ServiceProvider
         return __DIR__ . '/..';
     }
 
-    protected function console()
+    protected function console(): void
     {
         $this->publishes([
             $this->path() . '/resources/views' => resource_path('views/vendor/security'),
@@ -87,7 +89,7 @@ class SecurityServiceProvider extends ServiceProvider
     /**
      * Register the Authentication Log's events.
      */
-    protected function registerEvents()
+    protected function registerEvents(): void
     {
         foreach ($this->events as $event => $listeners) {
             foreach ($listeners as $listener) {
@@ -96,7 +98,7 @@ class SecurityServiceProvider extends ServiceProvider
         }
     }
 
-    protected function registerMiddlewares()
+    protected function registerMiddlewares(): void
     {
         $router = $this->app['router'];
 

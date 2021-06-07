@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -8,9 +10,9 @@ class CreateAuthLoginHistoryTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('auth_login_history', function (Blueprint $table) {
+        Schema::create('auth_login_history', function (Blueprint $table): void {
             $table->string('id', 36)->primary();
             $table->bigInteger('user_id')->unsigned()->nullable()->index('user_id');
             $table->string('ip', 20)->nullable()->index('ip');
@@ -34,7 +36,7 @@ class CreateAuthLoginHistoryTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('auth_login_history');
     }

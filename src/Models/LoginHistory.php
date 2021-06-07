@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +14,7 @@ class LoginHistory extends Model
      * @var bool
      */
     public $timestamps = false;
+
     protected $guarded = [];
 
     /**

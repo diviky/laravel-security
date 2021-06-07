@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Console;
 
 use Diviky\Security\Models\LoginHistory;
@@ -25,7 +27,7 @@ class ClearCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $this->comment('Clearing authentication log...');
 

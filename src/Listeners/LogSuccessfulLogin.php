@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Listeners;
 
 use Diviky\Security\Concerns\Device;
@@ -31,7 +33,7 @@ class LogSuccessfulLogin
     /**
      * Handle the event.
      */
-    public function handle(Login $event)
+    public function handle(Login $event): void
     {
         $user = $event->user;
 

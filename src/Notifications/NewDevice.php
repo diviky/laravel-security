@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -21,8 +23,7 @@ class NewDevice extends Notification
     /**
      * Create a new notification instance.
      *
-     * @param  \Diviky\Security\History  $history
-     * @return void
+     * @param \Diviky\Security\History $history
      */
     public function __construct($history)
     {
@@ -32,7 +33,8 @@ class NewDevice extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -48,12 +50,13 @@ class NewDevice extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(trans('security::messages.subject'))
             ->markdown('security::emails.security.new', [
                 'account' => $notifiable,
@@ -64,16 +67,17 @@ class NewDevice extends Notification
     /**
      * Get the Slack representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\SlackMessage
      */
     public function toSlack($notifiable)
     {
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->from(config('app.name'))
             ->warning()
             ->content(trans('security::messages.content', ['app' => config('app.name')]))
-            ->attachment(function ($attachment) use ($notifiable) {
+            ->attachment(function ($attachment) use ($notifiable): void {
                 $attachment->fields([
                     'Account'    => $notifiable->email,
                     'Time'       => carbon($this->history->created_at),

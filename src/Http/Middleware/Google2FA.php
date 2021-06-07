@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Http\Middleware;
 
 use Closure;
@@ -45,7 +47,7 @@ class Google2FA
 
         $token = user('password');
 
-        if (strcmp($token, $cookie) === 0) {
+        if (0 === strcmp($token, $cookie)) {
             return true;
         }
 

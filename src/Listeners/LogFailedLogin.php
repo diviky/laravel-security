@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Listeners;
 
+use Diviky\Security\Concerns\Device;
+use Diviky\Security\Models\LoginHistory;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Diviky\Security\Models\LoginHistory;
-use Diviky\Security\Concerns\Device;
 
 class LogFailedLogin
 {
@@ -14,8 +16,6 @@ class LogFailedLogin
 
     /**
      * Create the event listener.
-     *
-     * @param Request $request
      */
     public function __construct(Request $request)
     {
@@ -24,10 +24,8 @@ class LogFailedLogin
 
     /**
      * Handle the event.
-     *
-     * @param Failed $event
      */
-    public function handle(Failed $event)
+    public function handle(Failed $event): void
     {
         $user = $event->user;
 

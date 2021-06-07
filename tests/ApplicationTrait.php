@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Tests;
 
 use Diviky\Security\SecurityServiceProvider;
@@ -25,7 +27,7 @@ trait ApplicationTrait
         ];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $config = require __DIR__ . '/config/geocoder.php';
 

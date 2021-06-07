@@ -1,10 +1,9 @@
 <?php
 
-return [
+declare(strict_types=1);
 
-    /*
-     * Auth container binding
-     */
+return [
+    // Auth container binding
 
     'enabled'              => true,
 
@@ -15,60 +14,39 @@ return [
 
     'lifetime'             => 0, // 0 = eternal
 
-    /*
-     * Renew lifetime at every new request.
-     */
+    // Renew lifetime at every new request.
 
     'keep_alive'           => true,
 
-    /*
-     * Auth container binding
-     */
+    // Auth container binding
 
     'auth'                 => 'auth',
 
-    /*
-     * 2FA verified session var
-     */
+    // 2FA verified session var
 
     'session_var'          => 'google2fa',
 
-    /*
-     * One Time Password request input name
-     */
+    // One Time Password request input name
     'otp_input'            => 'one_time_password',
 
-    /*
-     * One Time Password Window
-     */
+    // One Time Password Window
     'window'               => 1,
 
-    /*
-     * Forbid user to reuse One Time Passwords.
-     */
+    // Forbid user to reuse One Time Passwords.
     'forbid_old_passwords' => false,
 
-    /*
-     * User's table column for google2fa secret
-     */
+    // User's table column for google2fa secret
     'otp_secret_column'    => 'google2fa_secret',
 
-    /*
-     * One Time Password View
-     */
+    // One Time Password View
     'view'                 => 'security::auth.2fa',
 
-    /*
-     * One Time Password error message
-     */
+    // One Time Password error message
     'error_messages'       => [
         'wrong_otp'       => "The 'One Time Password' typed was wrong.",
         'cannot_be_empty' => 'One Time Password cannot be empty.',
     ],
 
-    /*
-     * Throw exceptions or just fire events?
-     */
+    // Throw exceptions or just fire events?
     'throw_exceptions'     => true,
-
 ];

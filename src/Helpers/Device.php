@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Helpers;
 
 use DeviceDetector\DeviceDetector;
@@ -73,7 +75,7 @@ class Device
 
         $browserFamily            = Browser::getBrowserFamily($client['short_name']);
         $return['browser_family'] = (false !== $browserFamily) ? $browserFamily : 'Unknown';
-        $return['touch'] = $dd->isTouchEnabled();
+        $return['touch']          = $dd->isTouchEnabled();
 
         unset($os, $client, $osFamily, $browserFamily, $touch);
 

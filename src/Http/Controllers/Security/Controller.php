@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller as BaseController;

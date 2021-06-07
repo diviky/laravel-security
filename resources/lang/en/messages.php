@@ -1,7 +1,8 @@
 <?php
 
-return [
+declare(strict_types=1);
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Authentication Log Language Lines
@@ -15,5 +16,4 @@ return [
 
     'subject' => 'Login from a new device',
     'content' => 'Your :app account logged in from a new device.',
-
 ];

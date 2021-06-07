@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Listeners;
 
+use Diviky\Security\Concerns\Device;
+use Diviky\Security\Models\LoginHistory;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Diviky\Security\Models\LoginHistory;
-use Diviky\Security\Concerns\Device;
 
 class LogSuccessfulLogout
 {
@@ -22,8 +24,6 @@ class LogSuccessfulLogout
 
     /**
      * Create the event listener.
-     *
-     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -32,10 +32,8 @@ class LogSuccessfulLogout
 
     /**
      * Handle the event.
-     *
-     * @param Logout $event
      */
-    public function handle(Logout $event)
+    public function handle(Logout $event): void
     {
         if ($event->user) {
             $user = $event->user;

@@ -1,8 +1,9 @@
 <?php
 
-return [
+declare(strict_types=1);
 
-    'enable' => true,
+return [
+    'enable' => env('SECURITY_HEADERS_ENABLE', false),
     /*
      * Server
      *
@@ -81,9 +82,9 @@ return [
      */
 
     'clear-site-data'                   => [
-        'enable'            => false,
+        'enable'            => true,
 
-        'all'               => false,
+        'all'               => true,
 
         'cache'             => true,
 
@@ -103,11 +104,11 @@ return [
      */
 
     'hsts'                              => [
-        'enable'              => false,
+        'enable'              => true,
 
         'max-age'             => 15552000,
 
-        'include-sub-domains' => false,
+        'include-sub-domains' => true,
 
         'preload'             => true,
     ],
@@ -492,7 +493,7 @@ return [
 
         'style-src'                 => [
             'allow'               => [
-                "*",
+                '*',
             ],
 
             'hashes'              => [
@@ -502,7 +503,6 @@ return [
             ],
 
             'nonces'              => [
-                //
             ],
 
             'schemes'             => [
@@ -516,50 +516,47 @@ return [
         ],
 
         'img-src'                   => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
         'default-src'               => [
-            //
         ],
 
         'base-uri'                  => [
-            //
         ],
 
         'connect-src'               => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'font-src'                  => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'form-action'               => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'frame-ancestors'           => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'frame-src'                 => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'manifest-src'              => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'media-src'                 => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
         'object-src'                => [
-            //
         ],
 
         'worker-src'                => [
-            'schemes' => ['*', "self", 'http:', 'https:', 'blob:'],
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:'],
         ],
 
         'plugin-types'              => [
@@ -569,7 +566,5 @@ return [
         'require-sri-for'           => '',
 
         'sandbox'                   => '',
-
     ],
-
 ];

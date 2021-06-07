@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Http\Middleware;
 
 use Bepsvpt\SecureHeaders\SecureHeaders;
@@ -20,7 +22,7 @@ class SecureHeadersMiddleware
 
         $config = config('security-headers', []);
 
-        if (!isset($config['enabled']) || true !== $config['enabled']) {
+        if (!isset($config['enable']) || true !== $config['enable']) {
             return $response;
         }
 

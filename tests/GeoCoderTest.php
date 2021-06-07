@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Diviky\Security\Tests;
 
 use Diviky\Security\Helpers\GeoCode;
@@ -16,7 +18,7 @@ class GeoCoderTest extends TestCase
     /**
      * A basic test example.
      */
-    public function testGeoCodeHelperTest()
+    public function testGeoCodeHelperTest(): void
     {
         $ip = '203.109.101.177';
 
