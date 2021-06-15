@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Diviky\Security\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\User;
+use App\Models\User;
 use Diviky\Bright\Mail\Mailable;
 use Diviky\Security\Models\LoginHistory;
 use Diviky\Security\Models\Session;
@@ -25,13 +25,13 @@ class Controller extends BaseController
 
     public function twofa($user_id = null): array
     {
-        $g2fa    = app('pragmarx.google2fa');
+        $g2fa = app('pragmarx.google2fa');
         $user_id = $user_id ?: user('id');
 
         $user = User::find($user_id);
 
         if ($this->isMethod('post')) {
-            $task    = $this->post('task');
+            $task = $this->post('task');
             $user_id = $user->id;
 
             if ('verify' == $task) {
@@ -40,18 +40,18 @@ class Controller extends BaseController
                 ]);
 
                 $secret = $this->post('secret');
-                $code   = $this->post('code');
-                $valid  = $g2fa->verifyKey($secret, $code);
+                $code = $this->post('code');
+                $valid = $g2fa->verifyKey($secret, $code);
 
                 if (!$valid) {
                     return [
-                        'status'  => 'ERROR',
+                        'status' => 'ERROR',
                         'message' => 'Two factor Authentication FAILED.',
                     ];
                 }
 
                 return [
-                    'status'  => 'OK',
+                    'status' => 'OK',
                     'message' => 'Two factor Authentication SUCCESS.',
                 ];
             }
@@ -59,7 +59,7 @@ class Controller extends BaseController
             $password = $user->password;
             if (!Hash::check($this->input('password'), $password)) {
                 return [
-                    'status'  => 'ERROR',
+                    'status' => 'ERROR',
                     'message' => __('Your current password didn\'t match.'),
                 ];
             }
@@ -69,24 +69,24 @@ class Controller extends BaseController
                 $user->save();
 
                 return [
-                    'status'  => 'OK',
+                    'status' => 'OK',
                     'message' => 'Two factor Authentication DISABLED for your account.',
-                    'reload'  => true,
+                    'reload' => true,
                 ];
             }
 
             $this->rules([
                 'secret' => 'required',
-                'code'   => 'required',
+                'code' => 'required',
             ]);
 
             $secret = $this->post('secret');
-            $code   = $this->post('code');
-            $valid  = $g2fa->verifyKey($secret, $code);
+            $code = $this->post('code');
+            $valid = $g2fa->verifyKey($secret, $code);
 
             if (!$valid) {
                 return [
-                    'status'  => 'ERROR',
+                    'status' => 'ERROR',
                     'message' => 'Two factor Authentication FAILED. Try with new code.',
                 ];
             }
@@ -101,9 +101,9 @@ class Controller extends BaseController
             );
 
             $tags = [
-                'row'    => $user,
+                'row' => $user,
                 'secret' => $secret,
-                'url'    => $qrcode,
+                'url' => $qrcode,
             ];
 
             (new Mailable())
@@ -114,16 +114,16 @@ class Controller extends BaseController
                 ->deliver($user);
 
             return [
-                'status'  => 'OK',
+                'status' => 'OK',
                 'message' => 'Two factor Authentication ENABLED for your account.',
-                'reload'  => true,
+                'reload' => true,
             ];
         }
 
         $enabled = false;
 
         if ($user->google2fa_secret) {
-            $secret  = $user->google2fa_secret;
+            $secret = $user->google2fa_secret;
             $enabled = true;
         } else {
             $secret = $g2fa->generateSecretKey();
@@ -136,9 +136,9 @@ class Controller extends BaseController
         );
 
         return [
-            'user'    => $user,
-            'qrcode'  => $qrcode,
-            'secret'  => $secret,
+            'user' => $user,
+            'qrcode' => $qrcode,
+            'secret' => $secret,
             'enabled' => $enabled,
         ];
     }
@@ -153,7 +153,7 @@ class Controller extends BaseController
         $data = $this->all();
 
         $rows = LoginHistory::filter($data)
-            ->where('user_id', user()->id)
+            ->where('user_id', user('id'))
             ->ordering($data, ['created_at' => 'desc'])
             ->paginate();
 
@@ -169,7 +169,7 @@ class Controller extends BaseController
         $date = carbon();
         $date->subMinutes(config('session.lifetime'));
         $timestamp = $date->getTimestamp();
-        $data      = $this->all();
+        $data = $this->all();
 
         $rows = Session::filter($data)
             ->where('user_id', user()->id)
