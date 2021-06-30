@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Event;
 
 class SecurityServiceProvider extends ServiceProvider
 {
+    /**
+     * @var array
+     */
     protected $events = [
-        'Illuminate\Auth\Events\Login'  => [
+        'Illuminate\Auth\Events\Login' => [
             'Diviky\Security\Listeners\LogSuccessfulLogin',
         ],
         'Illuminate\Auth\Events\Logout' => [
@@ -56,7 +59,7 @@ class SecurityServiceProvider extends ServiceProvider
         $this->replaceConfigRecursive($this->path() . '/config/security-headers.php', 'security-headers');
     }
 
-    protected function path()
+    protected function path(): string
     {
         return __DIR__ . '/..';
     }
@@ -76,9 +79,9 @@ class SecurityServiceProvider extends ServiceProvider
         ], 'translations');
 
         $this->publishes([
-            $this->path() . '/config/security.php'         => config_path('security.php'),
+            $this->path() . '/config/security.php' => config_path('security.php'),
             $this->path() . '/config/security-headers.php' => config_path('security-headers.php'),
-            $this->path() . '/config/firewall.php'         => config_path('firewall.php'),
+            $this->path() . '/config/firewall.php' => config_path('firewall.php'),
         ], 'config');
 
         $this->commands([
@@ -108,7 +111,7 @@ class SecurityServiceProvider extends ServiceProvider
         $router->aliasMiddleware('firewall.blacklist', \PragmaRX\Firewall\Middleware\FirewallBlacklist::class);
         $router->aliasMiddleware('firewall.whitelist', \PragmaRX\Firewall\Middleware\FirewallWhitelist::class);
         $router->aliasMiddleware('firewall.attacks', \PragmaRX\Firewall\Middleware\BlockAttacks::class);
-        $router->aliasMiddleware('security.password', \App\Http\Middleware\PasswordChange::class);
+        $router->aliasMiddleware('security.password', \Diviky\Security\Http\Middleware\PasswordChange::class);
         $router->aliasMiddleware('security.headers', \Diviky\Security\Http\Middleware\SecureHeadersMiddleware::class);
 
         $router->pushMiddlewareToGroup('firewall', 'firewall.blacklist');

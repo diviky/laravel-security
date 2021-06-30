@@ -9,23 +9,35 @@ use Diviky\Bright\Helpers\GeoCode;
 
 trait Device
 {
+    /**
+     * Get the user device details.
+     *
+     * @param null|string $ip
+     * @param null|string $userAgent
+     */
     protected function getDeviceDetails($ip, $userAgent): array
     {
-        $device = new BaseDevice();
-        $details = (array) $device->detect($userAgent, true);
+        $details = [];
+        if (isset($userAgent)) {
+            $device = new BaseDevice();
+            $details = $device->detect($userAgent, true);
+        }
 
-        $geoHelper = new GeoCode();
-        $geo = (array) $geoHelper->geocode($ip);
+        $geo = [];
+        if (isset($ip)) {
+            $geoHelper = new GeoCode();
+            $geo = $geoHelper->geocode($ip);
+        }
 
         return [
-            'country' => $geo['country'],
-            'country_code' => $geo['country_code'],
-            'region' => $geo['region'],
-            'city' => $geo['city'],
-            'os' => $details['os'],
-            'browser' => $details['browser'],
-            'device' => $details['device'],
-            'brand' => $details['brand'],
+            'country' => $geo['country'] ?? null,
+            'country_code' => $geo['country_code'] ?? null,
+            'region' => $geo['region'] ?? null,
+            'city' => $geo['city'] ?? null,
+            'os' => $details['os'] ?? null,
+            'browser' => $details['browser'] ?? null,
+            'device' => $details['device'] ?? null,
+            'brand' => $details['brand'] ?? null,
         ];
     }
 }

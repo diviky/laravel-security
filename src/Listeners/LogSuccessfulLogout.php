@@ -9,7 +9,6 @@ use Diviky\Security\Models\LoginHistory;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 class LogSuccessfulLogout
 {
@@ -47,13 +46,11 @@ class LogSuccessfulLogout
 
             if (!$history) {
                 $values = [
-                    'id' => Str::uuid(),
                     'user_id' => $user->id,
                     'ip' => $ip,
                     'ips' => implode(',', $this->request->getClientIps()),
                     'host' => $this->request->getHost(),
                     'user_agent' => $user_agent,
-                    'created_at' => carbon(),
                     'status' => 1,
                 ];
 

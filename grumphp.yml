@@ -48,8 +48,6 @@ grumphp:
       ruleset: ['ruleset.xml']
       report_format: ansi
       metadata: { priority: 200 }
-    phpunit:
-      metadata: { priority: 100 }
     phpcsfixer:
       allow_risky: true
       config: .php-cs-fixer.php

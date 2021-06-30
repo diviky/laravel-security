@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     // Enable / disable firewall
 
-    'enabled'                     => env('FIREWALL_ENABLED', false),
+    'enabled' => env('FIREWALL_ENABLED', false),
 
     /*
      * Whitelisted and blacklisted IP addresses, ranges, countries, files and/or files of files
@@ -21,26 +21,26 @@ return [
      *      storage_path().DIRECTORY_SEPARATOR.'blacklisted.txt', // a file with IPs, one per line
      */
 
-    'blacklist'                   => [],
-    'whitelist'                   => [],
+    'blacklist' => [],
+    'whitelist' => [],
 
     // Response action for blocked responses
 
-    'responses'                   => [
+    'responses' => [
         'blacklist' => [
-            'code'        => 406, // 200 = log && notify, but keep pages rendering
-            'message'     => null,
-            'view'        => 'errors.403',
+            'code' => 406, // 200 = log && notify, but keep pages rendering
+            'message' => null,
+            'view' => 'errors.403',
             'redirect_to' => null,
-            'abort'       => false, // return abort() instead of Response::make() - disabled by default
+            'abort' => false, // return abort() instead of Response::make() - disabled by default
         ],
 
         'whitelist' => [
-            'code'        => 406, // 200 = log && notify, but keep pages rendering
-            'message'     => null,
-            'view'        => 'errors.403',
+            'code' => 406, // 200 = log && notify, but keep pages rendering
+            'message' => null,
+            'view' => 'errors.403',
             'redirect_to' => null,
-            'abort'       => false, // return abort() instead of Response::make() - disabled by default
+            'abort' => false, // return abort() instead of Response::make() - disabled by default
         ],
     ],
 
@@ -62,7 +62,7 @@ return [
      *
      */
 
-    'cache_expire_time'           => 60, // minutes
+    'cache_expire_time' => 60, // minutes
 
     /*
      * How long should we keep lists of IP addresses in cache?
@@ -71,11 +71,11 @@ return [
      * caching it, if you are not making frequent changes to your lists, may improve firewall speed a lot.
      */
 
-    'ip_list_cache_expire_time'   => 60, // minutes - disabled by default
+    'ip_list_cache_expire_time' => 60, // minutes - disabled by default
 
     // Send suspicious events to log?
 
-    'enable_log'                  => true,
+    'enable_log' => true,
 
     /*
      * Search by range allow you to store ranges of addresses in
@@ -91,7 +91,7 @@ return [
      *
      */
 
-    'enable_range_search'         => true,
+    'enable_range_search' => true,
 
     /*
      * Search by country range allow you to store country ids in your
@@ -102,11 +102,11 @@ return [
      *
      */
 
-    'enable_country_search'       => true,
+    'enable_country_search' => true,
 
     // Should Firewall use the database?
 
-    'use_database'                => true,
+    'use_database' => true,
 
     /*
      * Models
@@ -116,7 +116,7 @@ return [
      *
      */
 
-    'firewall_model'              => 'PragmaRX\Firewall\Vendor\Laravel\Models\Firewall',
+    'firewall_model' => 'PragmaRX\Firewall\Vendor\Laravel\Models\Firewall',
 
     /*
      * Session object binding in the IoC Container
@@ -126,7 +126,7 @@ return [
      *
      */
 
-    'session_binding'             => 'session',
+    'session_binding' => 'session',
 
     /*
      * GeoIp2 database path.
@@ -137,107 +137,107 @@ return [
      *
      */
 
-    'geoip_database_path'         => storage_path('geoip'),
+    'geoip_database_path' => storage_path('geoip'),
 
     // Block suspicious attacks
 
-    'attack_blocker'              => [
-        'enabled'           => [
-            'ip'      => true,
+    'attack_blocker' => [
+        'enabled' => [
+            'ip' => true,
             'country' => false,
         ],
 
-        'cache_key_prefix'  => 'firewall-attack-blocker',
+        'cache_key_prefix' => 'firewall-attack-blocker',
 
         'allowed_frequency' => [
-            'ip'      => [
+            'ip' => [
                 'requests' => 50,
-                'seconds'  => 1 * 60, // 1 minute
+                'seconds' => 1 * 60, // 1 minute
             ],
 
             'country' => [
                 'requests' => 3000,
-                'seconds'  => 2 * 60, // 2 minutes
+                'seconds' => 2 * 60, // 2 minutes
             ],
         ],
 
-        'action'            => [
-            'ip'      => [
-                'blacklist_unknown'     => false,
+        'action' => [
+            'ip' => [
+                'blacklist_unknown' => false,
                 'blacklist_whitelisted' => false,
             ],
 
             'country' => [
-                'blacklist_unknown'     => false,
+                'blacklist_unknown' => false,
                 'blacklist_whitelisted' => false,
             ],
         ],
 
-        'response'          => [
-            'code'        => 406, // 200 = log && notify, but keep pages rendering
-            'message'     => null,
-            'view'        => null,
+        'response' => [
+            'code' => 406, // 200 = log && notify, but keep pages rendering
+            'message' => null,
+            'view' => null,
             'redirect_to' => null,
-            'abort'       => false, // return abort() instead of Response::make() - disabled by default
+            'abort' => false, // return abort() instead of Response::make() - disabled by default
         ],
     ],
 
-    'notifications'               => [
-        'enabled'  => true,
+    'notifications' => [
+        'enabled' => true,
 
-        'message'  => [
-            'title'         => 'User agent',
-            'message'       => "A possible attack on '%s' has been detected from %s",
+        'message' => [
+            'title' => 'User agent',
+            'message' => "A possible attack on '%s' has been detected from %s",
 
             'request_count' => [
-                'title'   => 'Request count',
+                'title' => 'Request count',
                 'message' => 'Received %s requests in the last %s seconds. Timestamp of first request: %s',
             ],
 
-            'uri'           => [
+            'uri' => [
                 'title' => 'First URI offended',
             ],
 
-            'blacklisted'   => [
+            'blacklisted' => [
                 'title' => 'Was it blacklisted?',
             ],
 
-            'user_agent'    => [
+            'user_agent' => [
                 'title' => 'User agent',
             ],
 
-            'geolocation'   => [
-                'title'              => 'Geolocation',
-                'field_latitude'     => 'Latitude',
-                'field_longitude'    => 'Longitude',
+            'geolocation' => [
+                'title' => 'Geolocation',
+                'field_latitude' => 'Latitude',
+                'field_longitude' => 'Longitude',
                 'field_country_code' => 'Country code',
                 'field_country_name' => 'Country name',
-                'field_city'         => 'City',
+                'field_city' => 'City',
             ],
         ],
 
-        'route'    => '',
+        'route' => '',
 
-        'from'     => [
-            'name'       => 'Laravel Firewall',
-            'address'    => 'firewall@laravel.com',
+        'from' => [
+            'name' => 'Laravel Firewall',
+            'address' => 'firewall@laravel.com',
             'icon_emoji' => ':fire:',
         ],
 
-        'users'    => [
-            'model'  => PragmaRX\Firewall\Vendor\Laravel\Models\User::class,
+        'users' => [
+            'model' => PragmaRX\Firewall\Vendor\Laravel\Models\User::class,
             'emails' => [],
         ],
 
         'channels' => [
             'slack' => [
                 'enabled' => true,
-                'sender'  => PragmaRX\Firewall\Notifications\Channels\Slack::class,
+                'sender' => PragmaRX\Firewall\Notifications\Channels\Slack::class,
             ],
 
-            'mail'  => [
+            'mail' => [
                 'enabled' => false,
-                'sender'  => PragmaRX\Firewall\Notifications\Channels\Mail::class,
+                'sender' => PragmaRX\Firewall\Notifications\Channels\Mail::class,
             ],
         ],
     ],

@@ -76,7 +76,7 @@ return [
     | Default: Client::class (FQCN for CURL adapter)
     |
     */
-    'adapter'  => Client::class,
+    'adapter' => Client::class,
 
     /*
     |---------------------------------------------------------------------------

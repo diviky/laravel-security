@@ -12,7 +12,7 @@ return [
      * Note: when server is empty string, it will not add to response header
      */
 
-    'server'                            => 'None',
+    'server' => 'None',
 
     /*
      * X-Content-Type-Options
@@ -22,7 +22,7 @@ return [
      * Available Value: 'nosniff'
      */
 
-    'x-content-type-options'            => 'nosniff',
+    'x-content-type-options' => 'nosniff',
 
     /*
      * X-Download-Options
@@ -32,7 +32,7 @@ return [
      * Available Value: 'noopen'
      */
 
-    'x-download-options'                => 'noopen',
+    'x-download-options' => 'noopen',
 
     /*
      * X-Frame-Options
@@ -42,7 +42,7 @@ return [
      * Available Value: 'deny', 'sameorigin', 'allow-from <uri>'
      */
 
-    'x-frame-options'                   => 'sameorigin',
+    'x-frame-options' => 'sameorigin',
 
     /*
      * X-Permitted-Cross-Domain-Policies
@@ -62,7 +62,7 @@ return [
      * Available Value: '1', '0', '1; mode=block'
      */
 
-    'x-xss-protection'                  => '1; mode=block',
+    'x-xss-protection' => '1; mode=block',
 
     /*
      * Referrer-Policy
@@ -73,7 +73,7 @@ return [
      *                  'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'
      */
 
-    'referrer-policy'                   => 'no-referrer',
+    'referrer-policy' => 'no-referrer',
 
     /*
      * Clear-Site-Data
@@ -81,16 +81,16 @@ return [
      * Reference: https://w3c.github.io/webappsec-clear-site-data/
      */
 
-    'clear-site-data'                   => [
-        'enable'            => true,
+    'clear-site-data' => [
+        'enable' => true,
 
-        'all'               => true,
+        'all' => true,
 
-        'cache'             => true,
+        'cache' => true,
 
-        'cookies'           => true,
+        'cookies' => true,
 
-        'storage'           => true,
+        'storage' => true,
 
         'executionContexts' => true,
     ],
@@ -103,14 +103,14 @@ return [
      * Please ensure your website had set up ssl/tls before enable hsts.
      */
 
-    'hsts'                              => [
-        'enable'              => true,
+    'hsts' => [
+        'enable' => true,
 
-        'max-age'             => 15552000,
+        'max-age' => 15552000,
 
         'include-sub-domains' => true,
 
-        'preload'             => true,
+        'preload' => true,
     ],
 
     /*
@@ -119,12 +119,12 @@ return [
      * Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect-CT
      */
 
-    'expect-ct'                         => [
-        'enable'     => false,
+    'expect-ct' => [
+        'enable' => false,
 
-        'max-age'    => 2147483648,
+        'max-age' => 2147483648,
 
-        'enforce'    => false,
+        'enforce' => false,
 
         'report-uri' => null,
     ],
@@ -137,18 +137,18 @@ return [
      * hpkp will be ignored if hashes is empty.
      */
 
-    'hpkp'                              => [
-        'hashes'              => [
+    'hpkp' => [
+        'hashes' => [
             // 'sha256-hash-value',
         ],
 
         'include-sub-domains' => false,
 
-        'max-age'             => 15552000,
+        'max-age' => 15552000,
 
-        'report-only'         => false,
+        'report-only' => false,
 
-        'report-uri'          => null,
+        'report-uri' => null,
     ],
 
     /*
@@ -157,8 +157,8 @@ return [
      * Reference: https://wicg.github.io/feature-policy/
      */
 
-    'feature-policy'                    => [
-        'enable'               => false,
+    'feature-policy' => [
+        'enable' => false,
 
         /*
          * Each directive details can be found on:
@@ -169,14 +169,14 @@ return [
          * the priority is 'none' > '*' > 'self allow'.
          */
 
-        'accelerometer'        => [
-            'none'  => false,
+        'accelerometer' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -184,251 +184,251 @@ return [
         ],
 
         'ambient-light-sensor' => [
-            'none'  => false,
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'autoplay'             => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'camera'               => [
-            'none'  => false,
+        'autoplay' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'display-capture'      => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'document-domain'      => [
-            'none'  => false,
+        'camera' => [
+            'none' => false,
 
-            '*'     => true,
+            '*' => false,
 
-            'self'  => false,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'encrypted-media'      => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'fullscreen'           => [
-            'none'  => false,
+        'display-capture' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'geolocation'          => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'gyroscope'            => [
-            'none'  => false,
+        'document-domain' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => true,
 
-            'self'  => true,
+            'self' => false,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'magnetometer'         => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'microphone'           => [
-            'none'  => false,
+        'encrypted-media' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'midi'                 => [
-            'none'  => false,
-
-            '*'     => false,
-
-            'self'  => true,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'payment'              => [
-            'none'  => false,
+        'fullscreen' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'picture-in-picture'   => [
-            'none'  => false,
-
-            '*'     => true,
-
-            'self'  => false,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'speaker'              => [
-            'none'  => false,
+        'geolocation' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'sync-xhr'             => [
-            'none'  => false,
-
-            '*'     => true,
-
-            'self'  => false,
-
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'usb'                  => [
-            'none'  => false,
+        'gyroscope' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
+            'src' => false,
 
             'allow' => [
                 // 'url',
             ],
         ],
 
-        'vr'                   => [
-            'none'  => false,
+        'magnetometer' => [
+            'none' => false,
 
-            '*'     => false,
+            '*' => false,
 
-            'self'  => true,
+            'self' => true,
 
-            'src'   => false,
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'microphone' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'midi' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'payment' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'picture-in-picture' => [
+            'none' => false,
+
+            '*' => true,
+
+            'self' => false,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'speaker' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'sync-xhr' => [
+            'none' => false,
+
+            '*' => true,
+
+            'self' => false,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'usb' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'vr' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -446,12 +446,12 @@ return [
      * Note: custom-csp does not support report-only.
      */
 
-    'custom-csp'                        => null,
+    'custom-csp' => null,
 
-    'csp'                               => [
-        'report-only'               => false,
-        'report-uri'                => null,
-        'block-all-mixed-content'   => false,
+    'csp' => [
+        'report-only' => false,
+        'report-uri' => null,
+        'block-all-mixed-content' => false,
         'upgrade-insecure-requests' => false,
 
         /*
@@ -461,110 +461,110 @@ return [
          * Note: when directive value is empty, it will use `none` for that directive.
          */
 
-        'script-src'                => [
-            'allow'                    => [
+        'script-src' => [
+            'allow' => [
                 '*',
             ],
 
-            'hashes'                   => [
+            'hashes' => [
                 // 'sha256' => [
                 //     'hash-value',
                 // ],
             ],
 
-            'nonces'                   => [
+            'nonces' => [
                 // 'base64-encoded',
             ],
 
-            'schemes'                  => [
+            'schemes' => [
                 '*', 'https:', 'http:', 'blob:',
             ],
 
-            'self'                     => true,
-            'unsafe-inline'            => true,
-            'unsafe-eval'              => true,
-            'strict-dynamic'           => false,
+            'self' => true,
+            'unsafe-inline' => true,
+            'unsafe-eval' => true,
+            'strict-dynamic' => false,
             'unsafe-hashed-attributes' => false,
 
             // https://www.chromestatus.com/feature/5792234276388864
-            'report-sample'            => true,
-            'add-generated-nonce'      => false,
+            'report-sample' => true,
+            'add-generated-nonce' => false,
         ],
 
-        'style-src'                 => [
-            'allow'               => [
+        'style-src' => [
+            'allow' => [
                 '*',
             ],
 
-            'hashes'              => [
+            'hashes' => [
                 // 'sha256' => [
                 //     'hash-value',
                 // ],
             ],
 
-            'nonces'              => [
+            'nonces' => [
             ],
 
-            'schemes'             => [
+            'schemes' => [
                 'https:', 'http:', 'blob:',
             ],
 
-            'self'                => true,
-            'unsafe-inline'       => true,
-            'report-sample'       => true,
+            'self' => true,
+            'unsafe-inline' => true,
+            'report-sample' => true,
             'add-generated-nonce' => false,
         ],
 
-        'img-src'                   => [
+        'img-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
-        'default-src'               => [
+        'default-src' => [
         ],
 
-        'base-uri'                  => [
+        'base-uri' => [
         ],
 
-        'connect-src'               => [
-            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
-        ],
-
-        'font-src'                  => [
+        'connect-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'form-action'               => [
+        'font-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'frame-ancestors'           => [
+        'form-action' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'frame-src'                 => [
+        'frame-ancestors' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'manifest-src'              => [
+        'frame-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'media-src'                 => [
+        'manifest-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'object-src'                => [
+        'media-src' => [
+            'schemes' => ['*', 'self', 'http:', 'https:', 'blob:', 'data:'],
         ],
 
-        'worker-src'                => [
+        'object-src' => [
+        ],
+
+        'worker-src' => [
             'schemes' => ['*', 'self', 'http:', 'https:', 'blob:'],
         ],
 
-        'plugin-types'              => [
+        'plugin-types' => [
             // 'application/x-shockwave-flash',
         ],
 
-        'require-sri-for'           => '',
+        'require-sri-for' => '',
 
-        'sandbox'                   => '',
+        'sandbox' => '',
     ],
 ];

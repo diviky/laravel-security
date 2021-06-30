@@ -8,7 +8,6 @@ use Diviky\Security\Concerns\Device;
 use Diviky\Security\Models\LoginHistory;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class LogFailedLogin
 {
@@ -29,19 +28,17 @@ class LogFailedLogin
     {
         $user = $event->user;
 
-        $ip         = $this->request->ip();
+        $ip = $this->request->ip();
         $user_agent = $this->request->userAgent();
 
         $values = [
-            'id'         => Str::uuid(),
-            'user_id'    => is_null($user) ? null : $user->id,
-            'ip'         => $ip,
-            'ips'        => implode(',', $this->request->getClientIps()),
-            'host'       => $this->request->getHost(),
+            'user_id' => is_null($user) ? null : $user->id,
+            'ip' => $ip,
+            'ips' => implode(',', $this->request->getClientIps()),
+            'host' => $this->request->getHost(),
             'user_agent' => $user_agent,
-            'created_at' => carbon(),
-            'meta'       => json_encode($event->credentials),
-            'status'     => 2,
+            'meta' => $event->credentials,
+            'status' => 2,
         ];
 
         $values = array_merge($values, $this->getDeviceDetails($ip, $user_agent));

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Models;
 
+use Diviky\Bright\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 class LoginHistory extends Model
 {
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+    use Uuids;
+
+    const UPDATED_AT = null;
 
     protected $guarded = [];
 
@@ -31,11 +29,14 @@ class LoginHistory extends Model
      */
     protected $casts = [
         'logout_at' => 'datetime',
-        'login_at'  => 'datetime',
+        'login_at' => 'datetime',
+        'meta' => 'array',
     ];
 
     /**
      * Get the authenticatable entity that the authentication log belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function logins()
     {

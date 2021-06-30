@@ -16,14 +16,14 @@ class NewDevice extends Notification
     /**
      * The authentication log.
      *
-     * @var \Diviky\Security\History
+     * @var \Diviky\Security\Models\LoginHistory
      */
     public $history;
 
     /**
      * Create a new notification instance.
      *
-     * @param \Diviky\Security\History $history
+     * @param \Diviky\Security\Models\LoginHistory $history
      */
     public function __construct($history)
     {
@@ -40,6 +40,7 @@ class NewDevice extends Notification
     public function via($notifiable)
     {
         $via = config('security.via');
+
         if (!empty($via)) {
             return $via;
         }
@@ -79,11 +80,11 @@ class NewDevice extends Notification
             ->content(trans('security::messages.content', ['app' => config('app.name')]))
             ->attachment(function ($attachment) use ($notifiable): void {
                 $attachment->fields([
-                    'Account'    => $notifiable->email,
-                    'Time'       => carbon($this->history->created_at),
+                    'Account' => $notifiable->email,
+                    'Time' => carbon($this->history->created_at),
                     'IP Address' => $this->history->ip,
-                    'Browser'    => $this->history->browser,
-                    'Location'   => $this->history->location . ' ' . $this->history->region,
+                    'Browser' => $this->history->browser,
+                    'Location' => $this->history->location . ' ' . $this->history->region,
                 ]);
             });
     }

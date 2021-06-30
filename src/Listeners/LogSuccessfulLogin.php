@@ -9,7 +9,6 @@ use Diviky\Security\Models\LoginHistory;
 use Diviky\Security\Notifications\NewDevice;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class LogSuccessfulLogin
 {
@@ -37,7 +36,7 @@ class LogSuccessfulLogin
     {
         $user = $event->user;
 
-        $ip         = $this->request->ip();
+        $ip = $this->request->ip();
         $user_agent = $this->request->userAgent();
 
         $exists = LoginHistory::where('ip', $ip)
@@ -45,14 +44,12 @@ class LogSuccessfulLogin
             ->exists();
 
         $values = [
-            'id'         => Str::uuid(),
-            'user_id'    => $user->id,
-            'ip'         => $ip,
-            'ips'        => \implode(',', $this->request->getClientIps()),
-            'host'       => $this->request->getHost(),
+            'user_id' => $user->id,
+            'ip' => $ip,
+            'ips' => \implode(',', $this->request->getClientIps()),
+            'host' => $this->request->getHost(),
             'user_agent' => $user_agent,
-            'created_at' => carbon(),
-            'status'     => 1,
+            'status' => 1,
         ];
 
         $values = \array_merge($values, $this->getDeviceDetails($ip, $user_agent));

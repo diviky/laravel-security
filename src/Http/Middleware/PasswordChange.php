@@ -20,7 +20,7 @@ class PasswordChange
     {
         // Check password change required
         $last_password_at = user('last_password_at');
-        $frequency        = \time() - (30 * 24 * 60 * 60);
+        $frequency = \time() - (30 * 24 * 60 * 60);
 
         if (empty($last_password_at) || \strtotime($last_password_at) < $frequency) {
             Session::flash('message', 'Please change your password. It\'s been log time you have changed.');
