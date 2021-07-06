@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Diviky\Security\Concerns;
 
 use Diviky\Bright\Helpers\Device as BaseDevice;
-use Diviky\Bright\Helpers\GeoCode;
+use Diviky\Bright\Helpers\Geo;
 
 trait Device
 {
@@ -25,7 +25,7 @@ trait Device
 
         $geo = [];
         if (isset($ip)) {
-            $geoHelper = new GeoCode();
+            $geoHelper = new Geo();
             $geo = $geoHelper->geocode($ip);
         }
 
