@@ -194,7 +194,7 @@ class Controller extends BaseController
 
     public function delete($id)
     {
-        $result = Session::destory($id);
+        $result = Session::destroy($id);
 
         return $this->deleted($result, 'session');
     }

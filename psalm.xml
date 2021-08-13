@@ -17,6 +17,8 @@
     <issueHandlers>
         <UndefinedClass>
             <errorLevel type="suppress">
+                <referencedClass name="App\Http\Controllers\Controller"/>
+                <referencedClass name="App\Models\User"/>
             </errorLevel>
         </UndefinedClass>
         <!-- @todo: Can't get this to work within a package? Ide helper or migrations somehow? -->
