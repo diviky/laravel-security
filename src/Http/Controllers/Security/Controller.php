@@ -41,6 +41,14 @@ class Controller extends BaseController
 
                 $secret = $this->post('secret');
                 $code = $this->post('code');
+
+                if (strlen($secret) < 16) {
+                    return [
+                        'status' => 'ERROR',
+                        'message' => 'Secret key Must be at least 16'
+                    ];
+                }
+                
                 $valid = $g2fa->verifyKey($secret, $code);
 
                 if (!$valid) {
