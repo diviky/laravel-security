@@ -76,8 +76,8 @@ class Controller extends BaseController
             }
 
             $this->rules([
-                'secret' => 'required',
-                'code' => 'required',
+                'secret' => 'required|min:16',
+                'code' => 'required|min:4',
             ]);
 
             $secret = $this->post('secret');
