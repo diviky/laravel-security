@@ -488,7 +488,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
         'default-src' => [
-            'schemes' => ['self', 'http:', 'https:', 'blob:', 'data:'],
+            'schemes' => ['self', 'http:', 'https:', 'blob:', 'data:', 'ws:', 'wss:'],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/font-src
@@ -571,7 +571,7 @@ return [
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
-            'unsafe-eval' => false,
+            'unsafe-eval' => true,
 
             // https://www.w3.org/TR/CSP3/#unsafe-hashes-usage
             'unsafe-hashes' => false,
@@ -614,7 +614,7 @@ return [
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
-            'unsafe-eval' => false,
+            'unsafe-eval' => true,
 
             // https://www.w3.org/TR/CSP3/#unsafe-hashes-usage
             'unsafe-hashes' => false,
