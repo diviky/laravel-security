@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": ">=7.4|^8.0",
+        "php": "^8.0|^8.1",
         "bacon/bacon-qr-code": "^2.0",
         "bepsvpt/secure-headers": "^7.0",
         "geocoder-php/chain-provider": "^4.0",
@@ -19,12 +19,12 @@
         "pragmarx/google2fa": "^8.0",
         "pragmarx/google2fa-laravel": "^1.3",
         "pragmarx/recovery": "^0.2",
-        "diviky/bright": "^1.0|^2.0",
+        "diviky/bright": "^2.0",
         "toin0u/geocoder-laravel": "^4.4",
-        "symfony/yaml":"^5.3"
+        "symfony/yaml": "^5.3"
     },
     "require-dev": {
-        "diviky/code-analysis": "dev-master"
+        "diviky/code-analysis": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -47,7 +47,11 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpro/grumphp": true
+        }
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
