@@ -476,6 +476,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri
         'base-uri' => [
+            'none' => true,
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/child-src
@@ -484,11 +485,13 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src
         'connect-src' => [
+            'schemes' => ['http:', 'https:', 'a:', 'ws:', 'wss:'],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
         'default-src' => [
-            'schemes' => ['self', 'http:', 'https:', 'blob:', 'data:', 'ws:', 'wss:'],
+            'self' => true,
+            'schemes' => ['http:', 'https:', 'data:'],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/font-src
@@ -501,11 +504,14 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
         'frame-ancestors' => [
-            'schemes' => ['self', 'data:'],
+            'self' => true,
+            'schemes' => ['data:'],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-src
         'frame-src' => [
+            'self' => true,
+            'schemes' => ['data:'],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src
@@ -527,6 +533,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/object-src
         'object-src' => [
+            'none' => true,
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/plugin-types
@@ -566,8 +573,8 @@ return [
             'none' => false,
             'self' => true,
             'report-sample' => false,
-            'allow' => ['*'],
-            'schemes' => ['self', 'http:', 'https:', 'blob:', 'data:'],
+            'allow' => null,
+            'schemes' => ['http:', 'https:', 'data:'],
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
@@ -609,8 +616,8 @@ return [
             'none' => false,
             'self' => true,
             'report-sample' => false,
-            'allow' => ['*'],
-            'schemes' => ['self', 'http:', 'https:', 'blob:', 'data:'],
+            'allow' => null,
+            'schemes' => ['http:', 'https:', 'data:'],
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
