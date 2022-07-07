@@ -574,7 +574,7 @@ return [
             'self' => true,
             'report-sample' => false,
             'allow' => null,
-            'schemes' => ['http:', 'https:', 'data:'],
+            'schemes' => [],
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
@@ -617,7 +617,7 @@ return [
             'self' => true,
             'report-sample' => false,
             'allow' => null,
-            'schemes' => ['http:', 'https:', 'data:'],
+            'schemes' => [],
 
             // followings are only work for `script` and `style` related directives
             'unsafe-inline' => true,
