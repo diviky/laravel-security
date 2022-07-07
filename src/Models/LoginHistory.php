@@ -34,6 +34,13 @@ class LoginHistory extends Model
     ];
 
     /**
+     * The columns should be hidden in json.
+     *
+     * @var array
+     */
+    protected $hidden = ['meta'];
+
+    /**
      * Get the authenticatable entity that the authentication log belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
