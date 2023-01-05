@@ -6,7 +6,7 @@
 
 You may use Composer to install package into your Laravel project:
 
-    composer require Diviky/laravel-security
+    composer require diviky/laravel-security
 
 ### Configuration
 
