@@ -1,3 +1,4 @@
+@include('partials.menu.security')
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Two Factor Authentication</h3>
@@ -9,7 +10,7 @@
             <p>Set up your two factor authentication by scanning the barcode below.</p>
             <p>Alternatively, you can use the code <b>{{ $secret }}</b></p>
 
-            <img src="{{ $qrcode }}" alt="">
+            {!! $qrcode !!}
 
             <p>You must set up your Google Authenticator app before continuing. You will be unable to login otherwise</p>
 
@@ -20,7 +21,7 @@
 
 
             @if ($enabled)
-            <form method="POST" action="{{ url('security/2fa/'.$user->id) }}" data-reload="true" role="ksubmit">
+            <form method="POST" action="{{ url('security/2fa') }}" data-reload="true" role="ksubmit">
                 @csrf
                 <input type="hidden" name="secret" value="{{ $secret }}">
                 <input type="hidden" name="task" value="disable">
@@ -35,7 +36,7 @@
                 </div>
             </form>
             @else
-            <form method="POST" action="{{ url('security/2fa/'.$user->id) }}" role="ksubmit">
+            <form method="POST" action="{{ url('security/2fa') }}" role="ksubmit">
                 @csrf
                 <input type="hidden" name="secret" value="{{ $secret }}">
                 <input type="hidden" name="task" value="enable">
