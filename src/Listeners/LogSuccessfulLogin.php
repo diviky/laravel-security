@@ -58,7 +58,7 @@ class LogSuccessfulLogin
 
         $sniffed = session('sniffed');
 
-        if (!$exists && !$sniffed && config('security.notify')) {
+        if (! $exists && ! $sniffed && config('security.notify')) {
             $user->notify(new NewDevice($history));
         }
     }

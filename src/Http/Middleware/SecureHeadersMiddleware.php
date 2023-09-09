@@ -5,24 +5,20 @@ declare(strict_types=1);
 namespace Diviky\Security\Http\Middleware;
 
 use Bepsvpt\SecureHeaders\SecureHeaders;
-use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class SecureHeadersMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, \Closure $next)
     {
         $response = $next($request);
 
         $config = config('security-headers', []);
 
-        if (!isset($config['enable']) || true !== $config['enable']) {
+        if (! isset($config['enable']) || $config['enable'] !== true) {
             return $response;
         }
 

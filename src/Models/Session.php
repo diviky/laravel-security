@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Diviky\Security\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Session extends Model
 {
@@ -24,7 +25,7 @@ class Session extends Model
      */
     protected $table = 'sessions';
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(config('auth.providers.users.model'));
     }

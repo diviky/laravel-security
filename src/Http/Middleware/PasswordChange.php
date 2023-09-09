@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Http\Middleware;
 
-use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class PasswordChange
@@ -12,11 +12,9 @@ class PasswordChange
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, \Closure $next)
     {
         // Check password change required
         $last_password_at = user('last_password_at');

@@ -32,9 +32,9 @@ class SecurityServiceProvider extends ServiceProvider
     {
         $this->registerEvents();
 
-        $this->loadRoutesFrom($this->path() . '/routes/web.php');
-        $this->loadViewsFrom($this->path() . '/resources/views', 'security');
-        $this->loadTranslationsFrom($this->path() . '/resources/lang', 'security');
+        $this->loadRoutesFrom($this->path().'/routes/web.php');
+        $this->loadViewsFrom($this->path().'/resources/views', 'security');
+        $this->loadTranslationsFrom($this->path().'/resources/lang', 'security');
 
         if ($this->app->runningInConsole()) {
             $this->console();
@@ -46,42 +46,42 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom($this->path() . '/config/security.php', 'security');
+        $this->mergeConfigFrom($this->path().'/config/security.php', 'security');
         $this->vendorConfig();
         $this->registerMiddlewares();
     }
 
     protected function vendorConfig(): void
     {
-        $this->mergeConfigFrom($this->path() . '/config/google2fa.php', 'google2fa');
-        $this->mergeConfigFrom($this->path() . '/config/firewall.php', 'firewall', true);
-        $this->mergeConfigFrom($this->path() . '/config/geocoder.php', 'geocoder', true);
-        $this->replaceConfigRecursive($this->path() . '/config/security-headers.php', 'security-headers');
+        $this->mergeConfigFrom($this->path().'/config/google2fa.php', 'google2fa');
+        $this->mergeConfigFrom($this->path().'/config/firewall.php', 'firewall', true);
+        $this->mergeConfigFrom($this->path().'/config/geocoder.php', 'geocoder', true);
+        $this->replaceConfigRecursive($this->path().'/config/security-headers.php', 'security-headers');
     }
 
     protected function path(): string
     {
-        return __DIR__ . '/..';
+        return __DIR__.'/..';
     }
 
     protected function console(): void
     {
         $this->publishes([
-            $this->path() . '/resources/views' => resource_path('views/vendor/security'),
+            $this->path().'/resources/views' => resource_path('views/vendor/security'),
         ], 'views');
 
         $this->publishes([
-            $this->path() . '/database/migrations' => database_path('migrations'),
+            $this->path().'/database/migrations' => database_path('migrations'),
         ], 'migrations');
 
         $this->publishes([
-            $this->path() . '/resources/lang' => resource_path('lang/vendor/security'),
+            $this->path().'/resources/lang' => resource_path('lang/vendor/security'),
         ], 'translations');
 
         $this->publishes([
-            $this->path() . '/config/security.php' => config_path('security.php'),
-            $this->path() . '/config/security-headers.php' => config_path('security-headers.php'),
-            $this->path() . '/config/firewall.php' => config_path('firewall.php'),
+            $this->path().'/config/security.php' => config_path('security.php'),
+            $this->path().'/config/security-headers.php' => config_path('security-headers.php'),
+            $this->path().'/config/firewall.php' => config_path('firewall.php'),
         ], 'config');
 
         $this->commands([

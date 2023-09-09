@@ -34,7 +34,7 @@ class Controller extends BaseController
             $task = $this->post('task');
             $user_id = $user->id;
 
-            if ('verify' == $task) {
+            if ($task == 'verify') {
                 $this->rules([
                     'code' => 'required',
                 ]);
@@ -45,13 +45,13 @@ class Controller extends BaseController
                 if (strlen($secret) < 16) {
                     return [
                         'status' => 'ERROR',
-                        'message' => 'Secret key Must be at least 16'
+                        'message' => 'Secret key Must be at least 16',
                     ];
                 }
-                
+
                 $valid = $g2fa->verifyKey($secret, $code);
 
-                if (!$valid) {
+                if (! $valid) {
                     return [
                         'status' => 'ERROR',
                         'message' => 'Two factor Authentication FAILED.',
@@ -65,14 +65,14 @@ class Controller extends BaseController
             }
 
             $password = $user->password;
-            if (!Hash::check($this->input('password'), $password)) {
+            if (! Hash::check($this->input('password'), $password)) {
                 return [
                     'status' => 'ERROR',
                     'message' => __('Your current password didn\'t match.'),
                 ];
             }
 
-            if ('disable' == $task) {
+            if ($task == 'disable') {
                 $user->google2fa_secret = null;
                 $user->save();
 
@@ -92,7 +92,7 @@ class Controller extends BaseController
             $code = $this->post('code');
             $valid = $g2fa->verifyKey($secret, $code);
 
-            if (!$valid) {
+            if (! $valid) {
                 return [
                     'status' => 'ERROR',
                     'message' => 'Two factor Authentication FAILED. Try with new code.',

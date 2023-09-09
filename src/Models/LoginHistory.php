@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Models;
 
-use Diviky\Bright\Traits\Uuids;
+use Diviky\Bright\Database\Eloquent\Concerns\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 class LoginHistory extends Model
 {
     use Uuids;
 
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     protected $guarded = [];
 
@@ -33,11 +33,6 @@ class LoginHistory extends Model
         'meta' => 'array',
     ];
 
-    /**
-     * The columns should be hidden in json.
-     *
-     * @var array
-     */
     protected $hidden = ['meta'];
 
     /**

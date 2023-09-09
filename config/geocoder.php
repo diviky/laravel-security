@@ -104,7 +104,7 @@ return [
     */
     'reader' => [
         Reader::class => [
-            storage_path('geoip') . '/GeoLite2-City.mmdb',
+            storage_path('geoip').'/GeoLite2-City.mmdb',
         ],
     ],
 ];

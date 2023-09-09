@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Http\Middleware;
 
-use Closure;
+use Illuminate\Http\Request;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class Google2FA
 {
-    protected $cookie_name = 'twofa_token';
+    protected string $cookie_name = 'twofa_token';
 
-    public function handle($request, Closure $next)
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handle(Request $request, \Closure $next)
     {
         if (session('sniff')) {
             return $next($request);
@@ -37,7 +40,7 @@ class Google2FA
         return $authenticator->makeRequestOneTimePasswordResponse();
     }
 
-    protected function isRemembered($request)
+    protected function isRemembered(Request $request): bool
     {
         $cookie = $request->cookie($this->cookie_name);
 
@@ -47,7 +50,7 @@ class Google2FA
 
         $token = user('password');
 
-        if (0 === strcmp($token, $cookie)) {
+        if (strcmp($token, $cookie) === 0) {
             return true;
         }
 

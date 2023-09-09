@@ -44,7 +44,7 @@ class LogSuccessfulLogout
                 ->where('user_id', $user->id)
                 ->first();
 
-            if (!$history) {
+            if (! $history) {
                 $values = [
                     'user_id' => $user->id,
                     'ip' => $ip,

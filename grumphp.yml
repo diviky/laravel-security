@@ -1,11 +1,13 @@
 grumphp:
+  extensions:
+    - YieldStudio\GrumPHPLaravelPint\ExtensionLoader
   ascii:
     failed: null
     succeeded: null
   process_timeout: 600
   parallel:
-    enabled: false
-    max_workers: 32
+    enabled: true
+    max_workers: 10
   fixer:
     enabled: true
     fix_by_default: true
@@ -14,7 +16,7 @@ grumphp:
       tasks:
         - composer
         - phpmd
-        - phpcsfixer
+        - laravel_pint
     static:
       tasks:
         - psalm
@@ -24,6 +26,30 @@ grumphp:
     git_blacklist:
       keywords: [die(, var_dump(, exit;]
       metadata: { priority: 500 }
+    git_branch_name:
+      whitelist:
+        - "/JIRA-\\w+/"
+        - "/jira-\\w+/"
+        - "/feature-\\w+/"
+        - "/hotfix-\\w+/"
+        - "/bugfix-\\w+/"
+        - "/issue-\\w+/"
+        - "/task-\\w+/"
+        - "/release-\\w+/"
+        - 'development'
+        - 'master'
+        - 'deployment'
+        - '2.x'
+        - '3.x'
+        - '4.x'
+      additional_modifiers: ''
+      allow_detached_head: true
+    phplint:
+      exclude: ['vendor']
+      jobs: 10
+      short_open_tag: false
+      ignore_patterns: []
+      triggered_by: ['php']
     phpcs:
       standard:
         - PSR2
@@ -31,38 +57,28 @@ grumphp:
       ignore_patterns: ['*.blade.php']
       metadata: { priority: 400 }
       exclude: ['Generic.Files.LineLength']
-    # phpstan:
-    #   ignore_patterns: ['/^tests(.*)/', '/^database(.*)/', '/^config(.*)/', '/^routes(.*)/']
-    #   configuration: phpstan.neon
-    #   level: 5
-    #   metadata: { priority: 300 }
-    phpcpd:
-      directory: ['src']
-      exclude: ['vendor']
-      fuzzy: false
-      min_lines: 5
-      min_tokens: 70
-      triggered_by: ['php']
     phpmd:
       whitelist_patterns: ['/^src(.*)/', '/^app(.*)/', '/^config(.*)/', '/^recources(.*)/']
       ruleset: ['ruleset.xml']
       report_format: ansi
       metadata: { priority: 200 }
-    phpcsfixer:
-      allow_risky: true
-      config: .php-cs-fixer.php
-      using_cache: false
-      config_contains_finder: true
-      verbose: true
-      diff: false
-      triggered_by: ['php']
+    laravel_pint:
       metadata: { priority: 500 }
+      config: pint.json
+      preset: laravel
+      auto_fix: false
+      triggered_by:
+        - php
     psalm:
       config: psalm.xml
       ignore_patterns: ['*.blade.php']
-      no_cache: false
+      no_cache: true
       output_format: console
-      threads: 1
+      threads: 5
       triggered_by: ['php']
       show_info: false
       metadata: { priority: 400 }
+    # composer_script:
+    #   script: test
+    #   triggered_by: [php]
+    # phpunit:

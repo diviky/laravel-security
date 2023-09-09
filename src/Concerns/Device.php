@@ -12,8 +12,8 @@ trait Device
     /**
      * Get the user device details.
      *
-     * @param null|string $ip
-     * @param null|string $userAgent
+     * @param  null|string  $ip
+     * @param  null|string  $userAgent
      */
     protected function getDeviceDetails($ip, $userAgent): array
     {

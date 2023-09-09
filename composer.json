@@ -18,9 +18,8 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2",
         "bacon/bacon-qr-code": "^2.0",
-        "diviky/bright": "^3.0|^4.0",
-        "toin0u/geocoder-laravel": "^4.4",
-        "symfony/yaml": "^6.2"
+        "diviky/bright": "^4.0",
+        "toin0u/geocoder-laravel": "^4.4"
     },
     "require-dev": {
         "diviky/code-analysis": "^2.0"
