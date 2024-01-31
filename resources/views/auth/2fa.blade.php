@@ -20,7 +20,7 @@
                 <input name="one_time_password" maxlength="6" type="number" class="form-control" value="" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group hide">
                 <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="remember" value="1">
                     <span class="custom-control-label">Remember me on this device</span>
