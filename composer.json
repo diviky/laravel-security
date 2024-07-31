@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "bepsvpt/secure-headers": "^7.0",
         "geocoder-php/chain-provider": "^4.0",
         "geocoder-php/geoip2-provider": "^4.0",
@@ -18,7 +18,7 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2",
         "bacon/bacon-qr-code": "^2.0",
-        "diviky/bright": "^4.0",
+        "diviky/bright": "^4.0|^5.0",
         "toin0u/geocoder-laravel": "^4.4"
     },
     "require-dev": {

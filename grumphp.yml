@@ -44,12 +44,6 @@ grumphp:
         - '4.x'
       additional_modifiers: ''
       allow_detached_head: true
-    phplint:
-      exclude: ['vendor']
-      jobs: 10
-      short_open_tag: false
-      ignore_patterns: []
-      triggered_by: ['php']
     phpcs:
       standard:
         - PSR2
