@@ -14,10 +14,11 @@ Route::group([
     'middleware' => ['web', 'auth'],
     'namespace' => 'Diviky\Security\Http\Controllers',
     'prefix' => 'security',
+    'as' => 'security.',
 ], function (): void {
     Route::any('/', 'Security\Controller@index');
-    Route::any('2fa', 'Security\Controller@twofa');
-    Route::any('logins', 'Security\Controller@logins');
-    Route::any('sessions', 'Security\Controller@sessions');
-    Route::get('sessions/delete/{id?}', 'Security\Controller@delete');
+    Route::any('2fa', 'Security\Controller@twofa')->name('2fa');
+    Route::any('logins', 'Security\Controller@logins')->name('logins');
+    Route::any('sessions', 'Security\Controller@sessions')->name('sessions');
+    Route::delete('sessions/delete/{id?}', 'Security\Controller@delete')->name('delete');
 });
