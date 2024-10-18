@@ -19,13 +19,13 @@ trait Device
     {
         $details = [];
         if (isset($userAgent)) {
-            $device = new BaseDevice();
+            $device = new BaseDevice;
             $details = $device->detect($userAgent, true);
         }
 
         $geo = [];
         if (isset($ip)) {
-            $geoHelper = new Geo();
+            $geoHelper = new Geo;
             $geo = $geoHelper->geocode($ip);
         }
 

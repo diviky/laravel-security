@@ -14,7 +14,6 @@
         "geocoder-php/chain-provider": "^4.0",
         "geocoder-php/geoip2-provider": "^4.0",
         "matomo/device-detector": "^3.12",
-        "pragmarx/firewall": "^2.2",
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2",
         "bacon/bacon-qr-code": "^2.0",
@@ -22,7 +21,8 @@
         "toin0u/geocoder-laravel": "^4.4"
     },
     "require-dev": {
-        "diviky/code-analysis": "^2.0|^3.0"
+        "diviky/code-analysis": "^2.0|^3.0",
+        "laravel/framework": "^11.28"
     },
     "autoload": {
         "psr-4": {

@@ -114,7 +114,7 @@ class Controller extends BaseController
                 'url' => $qrcode,
             ];
 
-            (new Mailable())
+            (new Mailable)
                 ->subject(__('Two Factor Authentication enabled'))
                 ->with($tags)
                 ->prefix('security::emails.')

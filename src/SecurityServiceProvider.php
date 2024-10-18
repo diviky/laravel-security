@@ -54,7 +54,6 @@ class SecurityServiceProvider extends ServiceProvider
     protected function vendorConfig(): void
     {
         $this->mergeConfigFrom($this->path().'/config/google2fa.php', 'google2fa');
-        $this->mergeConfigFrom($this->path().'/config/firewall.php', 'firewall', true);
         $this->mergeConfigFrom($this->path().'/config/geocoder.php', 'geocoder', true);
         $this->replaceConfigRecursive($this->path().'/config/security-headers.php', 'security-headers');
     }
@@ -81,7 +80,6 @@ class SecurityServiceProvider extends ServiceProvider
         $this->publishes([
             $this->path().'/config/security.php' => config_path('security.php'),
             $this->path().'/config/security-headers.php' => config_path('security-headers.php'),
-            $this->path().'/config/firewall.php' => config_path('firewall.php'),
         ], 'config');
 
         $this->commands([
@@ -108,15 +106,8 @@ class SecurityServiceProvider extends ServiceProvider
         $router->aliasMiddleware('2fa', \PragmaRX\Google2FALaravel\Middleware::class);
         $router->aliasMiddleware('2fa.remember', \Diviky\Security\Http\Middleware\Google2FA::class);
         $router->aliasMiddleware('2fa.stateless', \PragmaRX\Google2FALaravel\MiddlewareStateless::class);
-        $router->aliasMiddleware('firewall.blacklist', \PragmaRX\Firewall\Middleware\FirewallBlacklist::class);
-        $router->aliasMiddleware('firewall.whitelist', \PragmaRX\Firewall\Middleware\FirewallWhitelist::class);
-        $router->aliasMiddleware('firewall.attacks', \PragmaRX\Firewall\Middleware\BlockAttacks::class);
         $router->aliasMiddleware('security.password', \Diviky\Security\Http\Middleware\PasswordChange::class);
         $router->aliasMiddleware('security.headers', \Diviky\Security\Http\Middleware\SecureHeadersMiddleware::class);
-
-        $router->pushMiddlewareToGroup('firewall', 'firewall.blacklist');
-        $router->pushMiddlewareToGroup('firewall', 'firewall.whitelist');
-        $router->pushMiddlewareToGroup('firewall', 'firewall.attacks');
 
         $router->pushMiddlewareToGroup('web', 'security.headers');
         $router->pushMiddlewareToGroup('api', 'security.headers');

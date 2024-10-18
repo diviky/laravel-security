@@ -54,7 +54,7 @@ class NewDevice extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject(trans('security::messages.subject'))
             ->markdown('security::emails.security.new', [
                 'account' => $notifiable,
