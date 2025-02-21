@@ -24,14 +24,14 @@
                                 @foreach ($rows as $row)
                                     <tr>
                                         <td>{{ $row->ip_address }}</td>
-                                        <td>{{ Illuminate\Support\Str::limit($row->user_agent, 100) }}</td>
+                                        <td>{{ Illuminate\Support\Str::limit((string) $row->user_agent, 50) }}</td>
                                         <td>{{ datetime($row->last_activity) }}</td>
                                         <td>{{ $row->active }}</td>
                                         <td>
                                             @if (!$row->active)
                                                 <a data-delete href="{{ route('security.delete', [$row->id]) }}"
                                                     title="Logout from this session" class="btn btn-secondary btn-sm">
-                                                    <i class="fe fe-log-out"></i>
+                                                    <i class="ti ti-logout"></i>
                                                 </a>
                                             @endif
                                         </td>

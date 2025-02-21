@@ -6,18 +6,15 @@ namespace Diviky\Security\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\User;
+use Diviky\Bright\Attributes\ViewPaths;
 use Diviky\Bright\Mail\Mailable;
 use Diviky\Security\Models\LoginHistory;
 use Diviky\Security\Models\Session;
 use Illuminate\Support\Facades\Hash;
 
+#[ViewPaths([__DIR__])]
 class Controller extends BaseController
 {
-    public function loadViewsFrom(): array
-    {
-        return [__DIR__];
-    }
-
     public function index(): array
     {
         return [];
@@ -165,8 +162,6 @@ class Controller extends BaseController
             ->ordering($data, ['created_at' => 'desc'])
             ->paginate();
 
-        $this->ajax('/security/logins');
-
         return [
             'rows' => $rows,
         ];
@@ -192,8 +187,6 @@ class Controller extends BaseController
 
             return $row;
         });
-
-        $this->ajax('/security/sessions');
 
         return [
             'rows' => $rows,

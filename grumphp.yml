@@ -60,16 +60,13 @@ grumphp:
       auto_fix: false
       triggered_by:
         - php
-    # psalm:
-    #   config: psalm.xml
-    #   ignore_patterns: ['*.blade.php']
-    #   no_cache: true
-    #   output_format: console
-    #   threads: 5
-    #   triggered_by: ['php']
-    #   show_info: false
-    #   metadata: { priority: 400 }
-    # composer_script:
-    #   script: test
-    #   triggered_by: [php]
-    # phpunit:
+    psalm:
+      config: psalm.xml
+      ignore_patterns: ['*.blade.php']
+      no_cache: true
+      output_format: console
+      threads: 5
+      triggered_by: ['php']
+      show_info: false
+      metadata: { priority: 400 }
+

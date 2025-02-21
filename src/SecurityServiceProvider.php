@@ -44,6 +44,7 @@ class SecurityServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
+    #[\Override]
     public function register(): void
     {
         $this->mergeConfigFrom($this->path().'/config/security.php', 'security');
