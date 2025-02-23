@@ -10,6 +10,7 @@ use Diviky\Bright\Attributes\ViewPaths;
 use Diviky\Bright\Mail\Mailable;
 use Diviky\Security\Models\LoginHistory;
 use Diviky\Security\Models\Session;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 #[ViewPaths([__DIR__])]
@@ -20,24 +21,24 @@ class Controller extends BaseController
         return [];
     }
 
-    public function twofa($user_id = null): array
+    public function twofa(Request $request, $user_id = null): array
     {
-        $g2fa = app('pragmarx.google2fa');
+        $fa = app('pragmarx.google2fa');
         $user_id = $user_id ?: user('id');
 
         $user = User::find($user_id);
 
-        if ($this->isMethod('post')) {
-            $task = $this->post('task');
+        if ($request->isMethod('post')) {
+            $task = $request->post('task');
             $user_id = $user->id;
 
             if ($task == 'verify') {
-                $this->rules([
+                $request->validate([
                     'code' => 'required',
                 ]);
 
-                $secret = $this->post('secret');
-                $code = $this->post('code');
+                $secret = $request->post('secret');
+                $code = $request->post('code');
 
                 if (strlen($secret) < 16) {
                     return [
@@ -46,7 +47,7 @@ class Controller extends BaseController
                     ];
                 }
 
-                $valid = $g2fa->verifyKey($secret, $code);
+                $valid = $fa->verifyKey($secret, $code);
 
                 if (! $valid) {
                     return [
@@ -61,8 +62,13 @@ class Controller extends BaseController
                 ];
             }
 
+            $request->validate([
+                'password' => 'required',
+            ]);
+
             $password = $user->password;
-            if (! Hash::check($this->input('password'), $password)) {
+
+            if (! Hash::check($request->post('password'), $password)) {
                 return [
                     'status' => 'ERROR',
                     'message' => __('Your current password didn\'t match.'),
@@ -70,7 +76,9 @@ class Controller extends BaseController
             }
 
             if ($task == 'disable') {
-                $user->google2fa_secret = null;
+                $user->two_factor_secret = null;
+                $user->two_factor_confirmed_at = null;
+
                 $user->save();
 
                 return [
@@ -80,14 +88,14 @@ class Controller extends BaseController
                 ];
             }
 
-            $this->rules([
+            $request->validate([
                 'secret' => 'required|min:16',
                 'code' => 'required|min:4',
             ]);
 
-            $secret = $this->post('secret');
-            $code = $this->post('code');
-            $valid = $g2fa->verifyKey($secret, $code);
+            $secret = $request->post('secret');
+            $code = $request->post('code');
+            $valid = $fa->verifyKey($secret, $code);
 
             if (! $valid) {
                 return [
@@ -96,10 +104,12 @@ class Controller extends BaseController
                 ];
             }
 
-            $user->google2fa_secret = $secret;
+            $user->two_factor_secret = $secret;
+            $user->two_factor_confirmed_at = now();
+
             $user->save();
 
-            $qrcode = $g2fa->getQRCodeInline(
+            $qrcode = $fa->getQRCodeInline(
                 $user->username,
                 $user->email,
                 $secret
@@ -127,15 +137,15 @@ class Controller extends BaseController
 
         $enabled = false;
 
-        if ($user->google2fa_secret) {
-            $secret = $user->google2fa_secret;
+        if ($user->two_factor_secret) {
+            $secret = $user->two_factor_secret;
             $enabled = true;
         } else {
-            $secret = $g2fa->generateSecretKey();
+            $secret = $fa->generateSecretKey();
         }
 
-        $qrcode = $g2fa->getQRCodeInline(
-            $user->username,
+        $qrcode = $fa->getQRCodeInline(
+            $user->user_id,
             $user->email,
             $secret
         );

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Diviky\Security;
 
 use Diviky\Bright\Support\ServiceProvider;
-use Diviky\Security\Console\ClearCommand;
+use Diviky\Security\Console\Commands\ClearCommand;
+use Diviky\Security\Console\Commands\Migrate;
 use Illuminate\Support\Facades\Event;
 
 class SecurityServiceProvider extends ServiceProvider
@@ -68,23 +69,24 @@ class SecurityServiceProvider extends ServiceProvider
     {
         $this->publishes([
             $this->path().'/resources/views' => resource_path('views/vendor/security'),
-        ], 'views');
+        ], 'security-views');
 
         $this->publishes([
             $this->path().'/database/migrations' => database_path('migrations'),
-        ], 'migrations');
+        ], 'security-migrations');
 
         $this->publishes([
             $this->path().'/resources/lang' => resource_path('lang/vendor/security'),
-        ], 'translations');
+        ], 'security-translations');
 
         $this->publishes([
             $this->path().'/config/security.php' => config_path('security.php'),
             $this->path().'/config/security-headers.php' => config_path('security-headers.php'),
-        ], 'config');
+        ], 'security-config');
 
         $this->commands([
             ClearCommand::class,
+            Migrate::class,
         ]);
     }
 

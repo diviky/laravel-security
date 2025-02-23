@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Diviky\Security\Console;
+namespace Diviky\Security\Console\Commands;
 
 use Diviky\Security\Models\LoginHistory;
 use Illuminate\Console\Command;

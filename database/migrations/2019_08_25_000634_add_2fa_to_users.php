@@ -14,7 +14,9 @@ class Add2faToUsers extends Migration
     public function up(): void
     {
         Schema::table(config('bright.table.users', 'users'), function (Blueprint $table): void {
-            $table->string('google2fa_secret', 50)->nullable()->after('remember_token');
+            $table->text('two_factor_secret')->nullable()->after('remember_token');
+            $table->text('two_factor_recovery_codes')->nullable()->after('remember_token');
+            $table->timestamp('two_factor_confirmed_at')->nullable()->after('remember_token');
         });
     }
 
@@ -24,7 +26,9 @@ class Add2faToUsers extends Migration
     public function down(): void
     {
         Schema::table(config('bright.table.users', 'users'), function (Blueprint $table): void {
-            $table->dropColumn('google2fa_secret');
+            $table->dropColumn('two_factor_secret');
+            $table->dropColumn('two_factor_recovery_codes');
+            $table->dropColumn('two_factor_confirmed_at');
         });
     }
 }

@@ -7,7 +7,7 @@ Route::group([
     'namespace' => 'Diviky\Security\Http\Controllers',
 ], function (): void {
     Route::post('2fa', 'Security\Controller@verify2fa')->name('2fa')->middleware('2fa');
-    Route::post('2fa/remember', 'Security\Controller@verify2fa')->middleware('2fa.remember');
+    Route::post('2fa/remember', 'Security\Controller@verify2fa')->name('security.2fa.remember')->middleware('2fa.remember');
 });
 
 Route::group([
