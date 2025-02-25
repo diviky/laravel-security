@@ -36,6 +36,10 @@ class LogSuccessfulLogin
     {
         $user = $event->user;
 
+        if ($user->created_at && $user->created_at > now()->subDay()) {
+            return;
+        }
+
         $ip = $this->request->ip();
         $user_agent = $this->request->userAgent();
 
