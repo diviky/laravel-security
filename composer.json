@@ -17,7 +17,7 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2",
         "bacon/bacon-qr-code": "^2.0",
-        "diviky/bright": "^5.0",
+        "diviky/bright": "^5.0|^6.0",
         "toin0u/geocoder-laravel": "^5.0"
     },
     "require-dev": {
@@ -47,9 +47,10 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "phpro/grumphp": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "phpro/grumphp": true
         }
     },
     "prefer-stable": true,
