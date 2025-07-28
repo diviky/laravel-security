@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Diviky\Bright\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Session extends Model
@@ -18,12 +18,10 @@ class Session extends Model
 
     protected $guarded = [];
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'sessions';
+    public function getTable()
+    {
+        return 'sessions';
+    }
 
     public function user(): BelongsTo
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Diviky\Security\Models;
 
 use Diviky\Bright\Database\Eloquent\Concerns\Uuids;
-use Illuminate\Database\Eloquent\Model;
+use Diviky\Bright\Database\Eloquent\Model;
 
 class LoginHistory extends Model
 {
@@ -14,13 +14,6 @@ class LoginHistory extends Model
     public const UPDATED_AT = null;
 
     protected $guarded = [];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'auth_login_history';
 
     /**
      * The attributes that should be cast to native types.
@@ -34,6 +27,11 @@ class LoginHistory extends Model
     ];
 
     protected $hidden = ['meta'];
+
+    public function getTable()
+    {
+        return 'auth_login_history';
+    }
 
     /**
      * Get the authenticatable entity that the authentication log belongs to.
