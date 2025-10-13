@@ -9,11 +9,11 @@
                     <span class="input-icon-addon">
                         <i class="fe fe-search"></i>
                     </span>
-                    <input type="text" class="form-control w-10" data-dateranges name="datetime[created_at]"
+                    <input type="text" class="form-control" data-dateranges name="datetime[created_at]"
                         placeholder="Choose Date">
                 </div>
                 <div class="input-icon ml-2 mr-1">
-                    <input type="text" class="form-control w-10" name="lfilter[ips]" placeholder="Search by ip">
+                    <input type="text" class="form-control" name="lfilter[ips]" placeholder="Search by ip">
                 </div>
                 <div class="input-icon ml-2 mr-1">
                     <button type="submit" data-task="" class="btn btn-primary btn-block"> Search</button>
