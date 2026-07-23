@@ -1,6 +1,7 @@
 {
     "name": "diviky/laravel-security",
     "description": "Provides security settings and login history",
+    "version": "3.1.8",
     "keywords": [
         "laravel",
         "authentication",
@@ -12,16 +13,16 @@
         "php": "^8.3",
         "bacon/bacon-qr-code": "^2.0",
         "bepsvpt/secure-headers": "^9.0",
-        "diviky/bright": "^6.0|^7.0",
+        "diviky/bright": "^7.0",
         "geocoder-php/chain-provider": "^4.0",
         "geocoder-php/geoip2-provider": "^4.0",
         "matomo/device-detector": "^3.12",
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2",
-        "toin0u/geocoder-laravel": "^5.0"
+        "toin0u/geocoder-laravel": "^13.0"
     },
     "require-dev": {
-        "diviky/code-analysis": "^3.0"
+        "diviky/code-analysis": "^4.0"
     },
     "autoload": {
         "psr-4": {
