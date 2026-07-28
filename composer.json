@@ -17,7 +17,7 @@
         "geocoder-php/chain-provider": "^4.0",
         "geocoder-php/geoip2-provider": "^4.0",
         "matomo/device-detector": "^3.12",
-        "pragmarx/google2fa-laravel": "^2.0",
+        "pragmarx/google2fa-laravel": "^3.0",
         "pragmarx/recovery": "^0.2",
         "toin0u/geocoder-laravel": "^13.0"
     },

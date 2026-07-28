@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Diviky\Security\Models;
 
-use Diviky\Bright\Database\Eloquent\Concerns\Uuids;
 use Diviky\Bright\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class LoginHistory extends Model
 {
-    use Uuids;
+    use HasUuids;
 
     public const UPDATED_AT = null;
 
@@ -36,7 +37,7 @@ class LoginHistory extends Model
     /**
      * Get the authenticatable entity that the authentication log belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
     public function logins()
     {

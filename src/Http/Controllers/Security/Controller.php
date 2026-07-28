@@ -6,6 +6,7 @@ namespace Diviky\Security\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\User;
+use Diviky\Bright\Attributes\View;
 use Diviky\Bright\Attributes\ViewPaths;
 use Diviky\Bright\Mail\Mailable;
 use Diviky\Security\Models\LoginHistory;
@@ -203,6 +204,7 @@ class Controller extends BaseController
         ];
     }
 
+    #[View('none')]
     public function delete($id)
     {
         $result = Session::destroy($id);

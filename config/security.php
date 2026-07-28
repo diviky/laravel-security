@@ -26,4 +26,9 @@ return [
      */
 
     'older' => 365,
+
+    'password' => [
+        'frequency' => env('PASSWORD_CHANGE_FREQUENCY', 30),
+        'url' => env('PASSWORD_CHANGE_URL', 'auth/account/password'),
+    ],
 ];
