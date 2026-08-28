@@ -7,6 +7,7 @@ namespace Diviky\Security\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class PasswordChange
 {
@@ -56,6 +57,6 @@ class PasswordChange
 
         $path = trim($request->path(), '/');
 
-        return $path === $configured || str_starts_with($path, $configured . '/');
+        return $path === $configured || str_starts_with($path, $configured . '/') || Str::contains($path, 'livewire/update');
     }
 }
